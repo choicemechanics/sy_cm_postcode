@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record model="ir.ui.view" id="view_crm_postcode_form">
+            <field name="name">Cm Postcode</field>
+            <field name="model">cm.postcode</field>
+            <field name="arch" type="xml">
+            <form string="Cm Postcode">
+                <sheet>
+                    <group col="4">
+                        <field name="part_1"/>
+                        <field name="part_2"/>
+                        <field name="postcode"/>
+                    </group>
+                </sheet>
+            </form>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="view_crm_postcode_tree">
+            <field name="name">Cm Postcode</field>
+            <field name="model">cm.postcode</field>
+            <field name="arch" type="xml">
+                <tree string="Cm Postcode">
+	                <field name="part_1"/>
+	                <field name="part_2"/>
+	                <field name="postcode"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="act_crm_postcode" model="ir.actions.act_window">
+            <field name="res_model">cm.postcode</field>
+            <field name="view_type">form</field>
+            <field name="name">Cm Postcode</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem id="menu_crm_postcode" name="Postcodes" parent="sy_cm.main_menu_cm"/>
+        <menuitem id="menu_crm_postcode1" name="Postcodes" action="act_crm_postcode" parent="menu_crm_postcode"/>
+    </data>
+</openerp>
