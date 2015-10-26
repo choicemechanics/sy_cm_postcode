@@ -28,6 +28,7 @@ class cm_postcode(models.Model):
     part_1 = fields.Char("Part 1",size=4,required = True) 
     part_2 = fields.Char("Part 2",size=3, required = True)
     postcode = fields.Char("Postcode",compute="_get_postcode")
+    part_1_portion = fields.Char('Part_1 Portion',compute="get_part_1_portion_portion")
 
     @api.multi
     def name_get(self):
@@ -40,4 +41,8 @@ class cm_postcode(models.Model):
     @api.one
     def _get_postcode(self):
         self.postcode = self.part_1 +' '+ self.part_2
+
+    @api.one
+    def get_part_1_portion_portion(self):
+        self.part_1_portion = self.part_1[:3]
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

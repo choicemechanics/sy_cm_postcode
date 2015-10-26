@@ -11,6 +11,7 @@
                         <field name="part_1"/>
                         <field name="part_2"/>
                         <field name="postcode"/>
+                        <field name="part_1_portion" invisible="1"/>
                     </group>
                 </sheet>
             </form>
