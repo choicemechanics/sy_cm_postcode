@@ -41,12 +41,14 @@ class cm_postcode(models.Model):
     @api.one
     @api.depends('part_1','part_2')
     def _get_postcode(self):
+        self.postcode = False
         if self.part_1 and self.part_2:
             self.postcode = self.part_1 +' '+ self.part_2
 
     @api.one
     @api.depends('part_1')
     def get_part_1_portion_portion(self):
+        self.part_1_portion = False
         if self.part_1:
             self.part_1_portion = self.part_1[:3]
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
