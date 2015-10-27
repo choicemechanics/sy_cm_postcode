@@ -28,21 +28,25 @@ class cm_postcode(models.Model):
     part_1 = fields.Char("Part 1",size=4,required = True) 
     part_2 = fields.Char("Part 2",size=3, required = True)
     postcode = fields.Char("Postcode",compute="_get_postcode")
-    part_1_portion = fields.Char('Part_1 Portion',compute="get_part_1_portion_portion")
+    part_1_portion = fields.Char('Part_1 Portion', compute="get_part_1_portion_portion",store=True)
 
     @api.multi
     def name_get(self):
         res=[]
         for postcode in self:
-            name =postcode.part_1 +' '+ postcode.part_2
+            name = postcode.part_1 +' '+ postcode.part_2
             res.append((postcode.id,name))
         return res
 
     @api.one
+    @api.depends('part_1','part_2')
     def _get_postcode(self):
-        self.postcode = self.part_1 +' '+ self.part_2
+        if self.part_1 and self.part_2:
+            self.postcode = self.part_1 +' '+ self.part_2
 
     @api.one
+    @api.depends('part_1')
     def get_part_1_portion_portion(self):
-        self.part_1_portion = self.part_1[:3]
+        if self.part_1:
+            self.part_1_portion = self.part_1[:3]
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
